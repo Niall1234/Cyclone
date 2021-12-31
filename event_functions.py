@@ -12,9 +12,6 @@ def run_game(surface, game_settings, clock, lights, ring, catchzone):
     check_light_count(game_settings, ring)
 
 
-
-
-
 def check_events(game_settings, catchzone, ring):
     for event in pygame.event.get():
         if event.type == QUIT:
@@ -28,8 +25,6 @@ def check_events(game_settings, catchzone, ring):
         elif event.type == KEYUP:
             if event.key == K_SPACE:
                 game_settings.space_pressed = False
-
-
 
 def get_ring(lights, ring, surface, game_settings):
     for i in range(len(ring.x_positions)):
@@ -50,3 +45,22 @@ def check_for_win(game_settings, catchzone, ring):
         print("you win")
     else:
         print("you lose")
+
+def generate_menu(font, menu, game_settings, clock):
+    while True:
+        menu.get_surface()
+        menu.generate_text(font)
+        for event in pygame.event.get():
+            if event.type == KEYUP:
+                menu.menu_in_progress = False
+            elif event.type == QUIT:
+                pygame.quit()
+                sys.exit()
+
+        if not menu.menu_in_progress:
+            break
+
+        pygame.display.update()
+        clock.tick(game_settings.fps)
+
+

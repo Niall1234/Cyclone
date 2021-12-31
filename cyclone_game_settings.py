@@ -7,3 +7,4 @@ class Settings:
         self.points = 0
         self.light_count = 0
         self.space_pressed = False
+        self.font = "freesansbold.ttf"
